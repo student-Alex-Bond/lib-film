@@ -1,4 +1,5 @@
 import './App.css';
+import poster from './assets/poster.png';
 import { useState } from 'react';
 import { Heading } from './components/Heading/Heading';
 import { Paragraph } from './components/Paragraph/Paragraph';
@@ -38,7 +39,11 @@ function App() {
         placeholder={'Введите название'}
         />
       <Button onClick = {handleClick}>Искать</Button>
-      <CardList/>
+      <CardList 
+        poster={poster}
+        filmName={'Black Widow'}
+        rating={324}
+      />
     </>
   )
 }
