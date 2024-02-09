@@ -1,0 +1,6 @@
+.nav-menu {
+    backdrop-filter: blur(40px);
+    background: rgba(18, 24, 41, 0.8);
+    padding: 16px 120px;
+    display: flex;
+}

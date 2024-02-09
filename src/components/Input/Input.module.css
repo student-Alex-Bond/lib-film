@@ -1,0 +1,27 @@
+.input {    
+    border: 1px solid rgb(50, 59, 84);
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.1);
+    color: rgb(71, 80, 105);
+    padding: 20px 16px;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.pl{
+    padding-left: 56px;
+}
+
+.label {
+    position: relative;
+}
+
+.label::before {
+    content: '';
+    background-image: url('./../../assets/search-normal.svg');
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    left: 10px;
+}
