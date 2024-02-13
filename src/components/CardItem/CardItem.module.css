@@ -1,0 +1,43 @@
+.card-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 282px;
+    padding: 8px 8px 16px 8px;
+    border-radius: 12px;
+    backdrop-filter: blur(80px);
+    background: rgba(32, 40, 62, 0.8);
+}
+
+.h2 {
+    color: rgb(235, 238, 245);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    margin-bottom: 16px;
+}
+.img {
+    border-radius: 8px;
+    margin-bottom: 24px;
+}
+.button {
+    position: relative;
+    color: rgb(123, 110, 246);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    border: none;
+    background-color: transparent;
+    width: 140px;
+    height: 24px;  
+    padding-left: 32px;
+    cursor: pointer;  
+}
+.button::before{
+    content: url('../../assets/like.svg');
+    height: 24px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
