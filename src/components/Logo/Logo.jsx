@@ -1,9 +1,9 @@
-import logo from './../../assets/logo.svg';
+import logo from "./../../assets/logo.svg";
 
 export const Logo = () => {
-    return (
-        <>
-            <img src={logo} alt="Логотип сайта" />
-        </>
-    )
-}
+  return (
+    <>
+      <img src={logo} alt="Логотип сайта" />
+    </>
+  );
+};
