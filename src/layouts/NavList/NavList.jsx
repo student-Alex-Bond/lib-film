@@ -3,7 +3,7 @@ import styles from "./NavList.module.css";
 import user from "../../assets/user.svg";
 import signIn from "../../assets/sign-in.svg";
 
-export const NavList = ({ isLogined, userName }) => {
+export const NavList = ({ isLogined = false, userName, logOut }) => {
   return (
     <ul className={cn(styles["menu-list"])}>
       <li className={cn(styles["list-item"])}>
@@ -25,11 +25,11 @@ export const NavList = ({ isLogined, userName }) => {
           <img src={user} alt="иконка пользователя" />
         </li>
       )}
-      <li className={cn(styles["list-item"])}>
+      <li className={cn(styles["list-item"])} onClick={logOut}>
         <a href="#" className={cn(styles["list-link"])}>
-          Войти
+          {isLogined === false ? "Войти" : "Выйти"}
         </a>
-        <img src={signIn} alt="иконка входа" />
+        {!isLogined && <img src={signIn} alt="иконка входа" />}
       </li>
     </ul>
   );
