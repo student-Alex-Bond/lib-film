@@ -3,7 +3,7 @@ import styles from "./NavList.module.css";
 import user from "../../assets/user.svg";
 import signIn from "../../assets/sign-in.svg";
 
-export const NavList = ({ isLogined = false, userName, logOut }) => {
+export const NavList = ({ isLogined = false, userName = "", logOut }) => {
   return (
     <ul className={cn(styles["menu-list"])}>
       <li className={cn(styles["list-item"])}>
