@@ -11,9 +11,9 @@ export const NavMenu = () => {
   const [data, saveData] = useLocalStorage("users");
   useEffect(() => {
     if (data) {
-      const user = data.find((user) => user.isLogined === true);
-      if (user) {
-        setCurrentUser(user);
+      const findedIsLoginedUser = data.find((user) => user.isLogined === true);
+      if (findedIsLoginedUser) {
+        setCurrentUser(findedIsLoginedUser);
       }
     }
   }, [data]);

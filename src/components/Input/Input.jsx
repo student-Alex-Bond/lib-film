@@ -3,14 +3,21 @@ import styles from "./Input.module.css";
 import { forwardRef } from "react";
 
 export const Input = forwardRef(function Input(
-  { placeholder, isIcon, value, onCange, isValid = true },
+  {
+    placeholder,
+    isIcon,
+    value,
+    onCange,
+    isValid = true,
+    isValidText = "Заполните поле",
+  },
   ref
 ) {
   const cl = isIcon ? styles.label : "";
   const pl = isIcon ? styles.pl : "";
   return (
     <label className={cn(cl, styles["label-flex"])}>
-      {!isValid && "Заполните поле"}
+      {!isValid && isValidText}
       <input
         ref={ref}
         value={value}
