@@ -1,15 +1,17 @@
 import cn from "classnames";
 import styles from "./Input.module.css";
 import { forwardRef } from "react";
+import { InputProps } from "./Input.props";
 
-export const Input = forwardRef(function Input(
+export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   {
     placeholder,
     isIcon,
     value,
-    onCange,
+    onChange,
     isValid = true,
     isValidText = "Заполните поле",
+    ...props
   },
   ref
 ) {
@@ -21,9 +23,10 @@ export const Input = forwardRef(function Input(
       <input
         ref={ref}
         value={value}
-        onChange={onCange}
+        onChange={onChange}
         className={cn(styles.input, pl, { [styles["invalid"]]: !isValid })}
         placeholder={placeholder}
+        {...props}
       />
     </label>
   );

@@ -8,11 +8,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-
 body {
   box-sizing: border-box;
   margin: 0;
+  padding: 0 calc(20px - (100vw - 100%)) 0 0;
   background: rgb(18, 24, 41);
-  color:  rgb(235, 238, 245);
+  color: rgb(235, 238, 245);
 }
