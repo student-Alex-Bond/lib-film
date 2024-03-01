@@ -4,15 +4,15 @@ import { Rating } from "../Rating/Rating";
 import { CardItemPpors } from "./CardItem.props";
 import { FC } from "react";
 
-export const CardItem: FC<CardItemPpors> = ({ poster, filmName, rating }) => {
+export const CardItem: FC<CardItemPpors> = ({poster,name,rating}) => {
   return (
     <li className={cn(styles["card-item"])}>
-      <div className={cn(styles['wrapper-rating'])}>
+      <div className={cn(styles["wrapper-rating"])}>
         <Rating rating={rating} />
       </div>
 
       <img className={cn(styles.img)} src={poster} alt="постер фильма" />
-      <h2 className={cn(styles.h2)}>{filmName}</h2>
+      <h2 className={cn(styles.h2)}>{name}</h2>
       <button className={cn(styles.button)}>В избранное</button>
     </li>
   );

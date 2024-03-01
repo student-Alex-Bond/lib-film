@@ -1,18 +1,26 @@
 import styles from "./CardList.module.css";
 import cn from "classnames";
 import { CardItem } from "../../components/CardItem/CardItem";
-import { CardItemPpors } from "../../components/CardItem/CardItem.props";
 import { FC } from "react";
+import { Doc, IResponse } from "../../mocha";
 
-export const CardList:FC<CardItemPpors> = ({ poster, filmName, rating }) => {
+export const CardList: FC<{ props: IResponse | undefined }> = (props) => {
+  if (props.props === undefined) {
+    return;
+  }
+  const { docs } = props.props;
   return (
     <ul className={cn(styles["card-list"])}>
-      <CardItem poster={poster} filmName={filmName} rating={rating} />
-      <CardItem poster={poster} filmName={filmName} rating={rating} />
-      <CardItem poster={poster} filmName={filmName} rating={rating} />
-      <CardItem poster={poster} filmName={filmName} rating={rating} />
-      <CardItem poster={poster} filmName={filmName} rating={rating} />
-      <CardItem poster={poster} filmName={filmName} rating={rating} />
+      {docs.map((movie: Doc) => {
+        return (
+          <CardItem
+            key={movie.id}
+            name={movie.name}
+            poster={movie.backdrop.url || movie.backdrop.previewUrl}
+            rating={movie.rating.imdb}
+          />
+        );
+      })}
     </ul>
   );
 };

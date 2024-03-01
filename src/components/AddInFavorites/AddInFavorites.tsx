@@ -5,13 +5,14 @@ import like from "./../../assets/like.svg";
 import addedToFavorites from "./../../assets/addedToFavorites.svg";
 
 export const AddInFavorites: FC = () => {
-  const [isFavorite, setIsFavorite] = useState<boolean>(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const invertValue = () => {
+    debugger;
     setIsFavorite((state) => !state);
   };
 
-  const img = isFavorite === true ? addedToFavorites : like;
+  const img = isFavorite ? addedToFavorites : like;
 
   return (
     <button
@@ -21,7 +22,7 @@ export const AddInFavorites: FC = () => {
       })}
     >
       <img src={img} alt="иконка избранное" />
-      {isFavorite === true ? "В избранном" : "В избранное"}
+      {isFavorite ? "В избранном" : "В избранное"}
     </button>
   );
 };

@@ -7,6 +7,7 @@ import { Button } from "../../components/Button/Button.jsx";
 import { UserContext } from "../../context/users.context.jsx";
 import { IUserContextProps } from "../../context/users.context.props";
 import { useNavigate } from "react-router-dom";
+import { routes } from "../../App";
 
 export const SignIn:FC = () => {
   const [isValid, setIsValid] = useState<boolean>(true);
@@ -24,7 +25,7 @@ export const SignIn:FC = () => {
       const newUser = { name: valueInput, isLogined: true };
       setCurrentUser(newUser);
       userName.current.value = '';
-      navigate('/');
+      navigate(routes.main);
     }
   };
 
@@ -39,7 +40,7 @@ export const SignIn:FC = () => {
         isIcon={false}
         placeholder={"Ваше имя"}
       />
-      <Button onClick={setUserName}>Войти</Button>
+      <Button type="button" onClick={setUserName}>Войти</Button>
     </div>
   );
 };

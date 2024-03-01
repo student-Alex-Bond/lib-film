@@ -11,6 +11,7 @@ import {
 } from "../../context/users.context.props";
 import logo from "./../../assets/logo.svg";
 import { useNavigate } from "react-router-dom";
+import { routes } from "../../App";
 
 export const NavMenu = () => {
   const { currentUser, setCurrentUser } = useContext(
@@ -23,7 +24,7 @@ export const NavMenu = () => {
       const findedLoginedUser = data.find((user) => user.isLogined === true);
       if (findedLoginedUser) {
         setCurrentUser(findedLoginedUser);
-        navigate("/");
+        navigate(routes.main);
       }
     }
   }, [data]);
@@ -53,7 +54,7 @@ export const NavMenu = () => {
         )
       );
       setCurrentUser({ name: "", isLogined: false });
-      navigate("/signin");
+      navigate(routes.signIn);
     }
   };
   return (

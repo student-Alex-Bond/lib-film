@@ -7,26 +7,34 @@ import { Error } from "./components/Error/Error";
 import { Favorites } from "./layouts/Favorites/Favorites";
 import { FilmItem } from "./layouts/FilmItem/FilmItem";
 
+export const routes = {
+  main: "/",
+  signIn: "/signin",
+  movie: "/movie:id",
+  favorites: '/favorites'
+};
+
+
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: routes.main,
     element: <Layout />,
     errorElement: <Error />,
     children: [
       {
-        path: "/",
+        path: routes.main,
         element: <Main />,
       },
       {
-        path: "/film",
+        path: routes.movie,
         element: <FilmItem />,
       },
       {
-        path: "/favorites",
+        path: routes.favorites,
         element: <Favorites />,
       },
       {
-        path: "/signin",
+        path: routes.signIn,
         element: <SignIn />,
       },
     ],
