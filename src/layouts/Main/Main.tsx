@@ -7,7 +7,7 @@ import { CardList } from "../CardList/CardList";
 import axios from "axios";
 import { IResponse } from "../../mocha";
 
-const token = "A89918E-7GDM97V-MS5WP2R-AE4JAWN";
+export const token = "A89918E-7GDM97V-MS5WP2R-AE4JAWN";
 export const Main: FC = () => {
   const [search, setSearch] = useState<string>("");
   const [movies, setMovies] = useState<IResponse | undefined>();
@@ -51,7 +51,9 @@ export const Main: FC = () => {
         isIcon={true}
         placeholder={"Введите название"}
       />
-      <Button type="button" onClick={handleClick}>Искать</Button>
+      <Button type="button" onClick={handleClick}>
+        Искать
+      </Button>
       <CardList props={movies} />
     </main>
   );

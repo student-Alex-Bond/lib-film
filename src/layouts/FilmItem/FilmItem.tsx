@@ -4,8 +4,22 @@ import cn from "classnames";
 import poster from "./../../assets/poster.png";
 import { Rating } from "../../components/Rating/Rating";
 import { AddInFavorites } from "../../components/AddInFavorites/AddInFavorites";
+import { useLoaderData } from "react-router-dom";
 
 export const FilmItem: FC = () => {
+  const data = useLoaderData() as { data: any };
+
+	return <>
+		<Suspense fallback={'Загружаю...'}>
+			<Await
+				resolve={data.data}
+			>
+				{({ data }: { data: any }) => (
+					<>Product - {data.name}</>
+				)}
+			</Await>
+		</Suspense>
+	</>;
   return (
     <div>
       <div className={cn(styles["head"])}>

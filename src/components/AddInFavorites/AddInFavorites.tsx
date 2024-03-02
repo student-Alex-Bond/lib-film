@@ -8,7 +8,6 @@ export const AddInFavorites: FC = () => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const invertValue = () => {
-    debugger;
     setIsFavorite((state) => !state);
   };
 

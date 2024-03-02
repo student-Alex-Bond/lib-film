@@ -1,19 +1,19 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, defer, RouterProvider } from "react-router-dom";
 import { UserContextProvider } from "./context/users.context";
 import { Layout } from "./layouts/Layout/Layout";
-import { Main } from "./layouts/Main/Main";
+import { Main, token } from "./layouts/Main/Main";
 import { SignIn } from "./layouts/SingIn/SignIn";
 import { Error } from "./components/Error/Error";
 import { Favorites } from "./layouts/Favorites/Favorites";
 import { FilmItem } from "./layouts/FilmItem/FilmItem";
+import axios from "axios";
 
 export const routes = {
   main: "/",
   signIn: "/signin",
-  movie: "/movie:id",
-  favorites: '/favorites'
+  movie: "/movie/id",
+  favorites: "/favorites",
 };
-
 
 const router = createBrowserRouter([
   {
@@ -28,6 +28,26 @@ const router = createBrowserRouter([
       {
         path: routes.movie,
         element: <FilmItem />,
+        loader: async ({ params }) => {
+          return defer({
+            data: new Promise((resolve, reject) => {
+              const options = {
+                method: "GET",
+                url: `https://api.kinopoisk.dev/v1.4/movie/${params.id}`,
+                headers: { accept: "application/json", "X-API-KEY": token },
+              };
+
+              axios
+                .request(options)
+                .then(function (response) {
+                  resolve(response.data);
+                })
+                .catch(function (error) {
+                  reject(error);
+                });
+            }),
+          });
+        },
       },
       {
         path: routes.favorites,

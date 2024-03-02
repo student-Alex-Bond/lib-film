@@ -14,6 +14,7 @@ export const CardList: FC<{ props: IResponse | undefined }> = (props) => {
       {docs.map((movie: Doc) => {
         return (
           <CardItem
+            id={String(movie.id)}
             key={movie.id}
             name={movie.name}
             poster={movie.backdrop.url || movie.backdrop.previewUrl}

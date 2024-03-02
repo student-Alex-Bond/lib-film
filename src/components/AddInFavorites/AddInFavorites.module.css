@@ -9,6 +9,7 @@
   height: 24px;
   padding-left: 32px;
   cursor: pointer;
+  align-self: flex-start;
 }
 .active {
   color: rgb(55, 216, 167);
