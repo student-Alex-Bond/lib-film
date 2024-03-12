@@ -11,7 +11,7 @@ import axios from "axios";
 export const routes = {
   main: "/",
   signIn: "/signin",
-  movie: "/movie/id",
+  movie: "/movie/:id",
   favorites: "/favorites",
 };
 
@@ -28,25 +28,23 @@ const router = createBrowserRouter([
       {
         path: routes.movie,
         element: <FilmItem />,
+        errorElement: <div>ошибка фильма по ид</div>,
         loader: async ({ params }) => {
-          return defer({
-            data: new Promise((resolve, reject) => {
-              const options = {
-                method: "GET",
-                url: `https://api.kinopoisk.dev/v1.4/movie/${params.id}`,
-                headers: { accept: "application/json", "X-API-KEY": token },
-              };
+          const options = {
+            method: "GET",
+            url: `https://api.kinopoisk.dev/v1.4/movie/${params.id}`,
+            headers: { accept: "application/json", "X-API-KEY": token },
+          };
 
-              axios
-                .request(options)
-                .then(function (response) {
-                  resolve(response.data);
-                })
-                .catch(function (error) {
-                  reject(error);
-                });
-            }),
-          });
+          const data = await axios
+            .request(options)
+            .then(function (response) {
+              return response.data;
+            })
+            .catch(function (error) {
+              return error;
+            });
+          return defer({ data });
         },
       },
       {

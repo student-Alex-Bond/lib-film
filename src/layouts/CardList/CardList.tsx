@@ -4,7 +4,7 @@ import { CardItem } from "../../components/CardItem/CardItem";
 import { FC } from "react";
 import { Doc, IResponse } from "../../mocha";
 
-export const CardList: FC<{ props: IResponse | undefined }> = (props) => {
+export const CardList:FC<{ props: IResponse | undefined }> = (props) => {
   if (props.props === undefined) {
     return;
   }
@@ -17,7 +17,7 @@ export const CardList: FC<{ props: IResponse | undefined }> = (props) => {
             id={String(movie.id)}
             key={movie.id}
             name={movie.name}
-            poster={movie.backdrop.url || movie.backdrop.previewUrl}
+            poster={movie.poster.previewUrl}
             rating={movie.rating.imdb}
           />
         );

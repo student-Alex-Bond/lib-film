@@ -25,6 +25,8 @@ export const NavMenu = () => {
       if (findedLoginedUser) {
         setCurrentUser(findedLoginedUser);
         navigate(routes.main);
+      } else {
+        navigate(routes.signIn);
       }
     }
   }, [data]);
