@@ -5,6 +5,7 @@ import signIn from "../../assets/sign-in.svg";
 import { FC } from "react";
 import { INavList } from "./NavList.props";
 import { NavLink } from "react-router-dom";
+import { routes } from "../../App";
 
 export const NavList: FC<INavList> = ({
   isLogined = false,
@@ -17,7 +18,7 @@ export const NavList: FC<INavList> = ({
         <>
           <li className={cn(styles["list-item"])}>
             <NavLink
-              to="/"
+              to={routes.main}
               className={({ isActive }) =>
                 cn(styles["list-link"], {
                   [styles["active"]]: isActive,
@@ -30,7 +31,7 @@ export const NavList: FC<INavList> = ({
 
           <li className={cn(styles["list-item"])}>
             <NavLink
-              to="/favorites"
+              to={routes.favorites}
               className={({ isActive }) =>
                 cn(styles["list-link"], {
                   [styles["active"]]: isActive,
@@ -56,7 +57,7 @@ export const NavList: FC<INavList> = ({
                   [styles["active"]]: isActive,
                 })
               }
-              to="/signin"
+              to={routes.signIn}
             >
               Выйти
             </NavLink>
@@ -65,7 +66,7 @@ export const NavList: FC<INavList> = ({
       ) : (
         <li className={cn(styles["list-item"])}>
           <NavLink
-            to="/signin"
+            to={routes.signIn}
             className={({ isActive }) =>
               cn(styles["list-link"], {
                 [styles["active"]]: isActive,

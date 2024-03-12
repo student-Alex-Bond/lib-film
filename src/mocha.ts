@@ -1,4 +1,4 @@
-export interface IResponse {
+export interface Response {
   docs: Doc[];
   total: number;
   limit: number;

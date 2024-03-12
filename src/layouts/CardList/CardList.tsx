@@ -2,9 +2,9 @@ import styles from "./CardList.module.css";
 import cn from "classnames";
 import { CardItem } from "../../components/CardItem/CardItem";
 import { FC } from "react";
-import { Doc, IResponse } from "../../mocha";
+import { Doc, Response } from "../../mocha";
 
-export const CardList:FC<{ props: IResponse | undefined }> = (props) => {
+export const CardList:FC<{ props: Response }> = (props) => {
   if (props.props === undefined) {
     return;
   }
