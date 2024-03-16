@@ -1,72 +1,36 @@
 import { NavList } from "../NavList/NavList";
 import { Logo } from "../../components/Logo/Logo";
-import { UserContext } from "../../context/users.context";
-import { useContext, useEffect } from "react";
-import { useLocalStorage } from "../../hook/useLocalStorage.js";
+import { useEffect } from "react";
 import styles from "./NavMenu.module.css";
 import cn from "classnames";
-import {
-  IUserContext,
-  IUserContextProps,
-} from "../../context/users.context.props";
 import logo from "./../../assets/logo.svg";
 import { useNavigate } from "react-router-dom";
-import { routes } from "../../App";
+import { routes } from "./../../routes";
+import { useSelector, useDispatch } from "react-redux";
+import { siginUser } from "../../features/user.slice";
+import { RootState } from "../../store/store";
 
 export const NavMenu = () => {
-  const { currentUser, setCurrentUser } = useContext(
-    UserContext
-  ) as IUserContextProps;
-  const [data, saveData] = useLocalStorage("users");
+  const users = useSelector((state: RootState) => state.allUsers);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    if (data) {
-      const findedLoginedUser = data.find((user) => user.isLogined === true);
+    if (users) {
+      const findedLoginedUser = users.find((user) => user.isLogined === true);
       if (findedLoginedUser) {
-        setCurrentUser(findedLoginedUser);
+        dispatch(siginUser(findedLoginedUser));
         navigate(routes.main);
       } else {
         navigate(routes.signIn);
       }
     }
-  }, [data]);
+  }, [users]);
 
-  useEffect(() => {
-    if (data && currentUser.name) {
-      const users = [currentUser, ...data];
-      const formatedUsers = users
-        .reduce((acc: Array<IUserContext>, user) => {
-          if (!acc.find((v) => v.name == user.name)) {
-            acc.push(user);
-          }
-          return acc;
-        }, [])
-        .map((user) =>
-          user.name === currentUser.name ? { ...user, isLogined: true } : user
-        );
-      saveData(formatedUsers);
-    }
-  }, [currentUser.name]);
-
-  const logOutUser = () => {
-    if (data) {
-      saveData(
-        data.map((user) =>
-          user.name === currentUser.name ? { ...user, isLogined: false } : user
-        )
-      );
-      setCurrentUser({ name: "", isLogined: false });
-      navigate(routes.signIn);
-    }
-  };
   return (
     <nav className={cn(styles["nav-menu"])}>
       <Logo srcLogo={logo} />
-      <NavList
-        isLogined={currentUser.isLogined}
-        userName={currentUser.name}
-        logOut={logOutUser}
-      />
+      <NavList />
     </nav>
   );
 };

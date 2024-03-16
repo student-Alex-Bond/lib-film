@@ -2,16 +2,18 @@ import styles from "./CardList.module.css";
 import cn from "classnames";
 import { CardItem } from "../../components/CardItem/CardItem";
 import { FC } from "react";
-import { Doc, Response } from "../../mocha";
+import { Doc } from "../../mocha";
 
-export const CardList:FC<{ props: Response }> = (props) => {
-  if (props.props === undefined) {
-    return;
-  }
-  const { docs } = props.props;
+export const CardList: FC<{ movies?: Doc[]; isLoading?: boolean }> = ({
+  movies,
+  isLoading,
+}) => {
+  if (!movies) return;
+
   return (
     <ul className={cn(styles["card-list"])}>
-      {docs.map((movie: Doc) => {
+      {isLoading && <div>Loading...</div>}
+      {movies.map((movie: Doc) => {
         return (
           <CardItem
             id={String(movie.id)}
