@@ -4,32 +4,32 @@ import { FC, useContext, useRef, useState } from "react";
 import { Heading } from "./../../components/Heading/Heading.jsx";
 import { Input } from "./../../components/Input/Input.jsx";
 import { Button } from "../../components/Button/Button.jsx";
-import { UserContext } from "../../context/users.context.jsx";
-import { IUserContextProps } from "../../context/users.context.props";
 import { useNavigate } from "react-router-dom";
-import { routes } from "../../App";
+import { routes } from "../../routes";
+import { useDispatch } from "react-redux";
+import { AppDispathType } from "../../store/store";
+import { addUser } from "../../features/allUsers.slice";
 
 export const SignIn:FC = () => {
   const [isValid, setIsValid] = useState<boolean>(true);
   const userName = useRef<HTMLInputElement>(null);
-  const { setCurrentUser } = useContext(UserContext) as IUserContextProps;
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispathType>();
 
   const setUserName = () => {
-    if(userName.current) {
+    if (userName.current) {
       const valueInput = userName.current.value.trim();
-    if (!valueInput) {
-      setIsValid(false);
-    } else {
-      setIsValid(true);
-      const newUser = { name: valueInput, isLogined: true };
-      setCurrentUser(newUser);
-      userName.current.value = '';
-      navigate(routes.main);
+      if (!valueInput) {
+        setIsValid(false);
+      } else {
+        setIsValid(true);
+        dispatch(addUser({name:valueInput}));
+        userName.current.value = "";
+        navigate(routes.main);
+      }
     }
   };
 
-    }
     
   return (
     <div className={cn(styles["sign-in"])}>

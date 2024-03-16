@@ -1,62 +1,69 @@
-import { FC, Suspense } from "react";
+import { FC } from "react";
 import styles from "./FiltItem.module.css";
 import cn from "classnames";
-import poster from "./../../assets/poster.png";
 import { Rating } from "../../components/Rating/Rating";
 import { AddInFavorites } from "../../components/AddInFavorites/AddInFavorites";
-import { Await, useLoaderData } from "react-router-dom";
+import { Await, useLoaderData, useParams } from "react-router-dom";
 import { IResponseMovie } from "../../intrerfaces/responseMovie";
+import { RootState } from "../../store/store";
+import { useSelector } from "react-redux";
+import { useGetMoviesByIdQuery } from "../../features/movies.slice";
 
 export const FilmItem: FC = () => {
-  const data = useLoaderData() as { data: IResponseMovie };
-  const movieInfo = data.data;
+  const { id } = useParams();
+  const currentUserName = useSelector(
+    (state: RootState) => state.currentUser.name
+  );
+  const { data, isLoading } = useGetMoviesByIdQuery(id);
+  const movieInfo: IResponseMovie = data;
+  if (isLoading) return <div>Losding...</div>;
+
   return (
     <>
-      <Suspense fallback={"Загружаю..."}>
-        <Await resolve={movieInfo}>
-          {(movieInfo: IResponseMovie) => (
-            <div>
-              <div className={cn(styles["head"])}>
-                <span className={cn(styles["subtitle"])}>Поиск фильмов</span>
-                <h2 className={cn(styles["title"])}>{movieInfo.name}</h2>
-              </div>
-              <div className={cn(styles["content"])}>
-                <img
-                  className={cn(styles["poster"])}
-                  src={movieInfo.poster.url}
-                  alt="постер фильма"
-                />
-                <div className={cn(styles["right-panel"])}>
-                  <div className={cn(styles["description"])}>
-                    {movieInfo.description}
-                  </div>
-                  <div className={cn(styles["rating"])}>
-                    <Rating rating={Number(movieInfo.rating.imdb)}></Rating>
-                    <AddInFavorites />
-                  </div>
-                  <div className={cn(styles["details"])}>
-                    <span className={cn(styles["name"])}>Тип</span>
-                    <span className={cn(styles["info"])}>{movieInfo.type}</span>
-                    <span className={cn(styles["name"])}>Дата Выхода</span>
-                    <span className={cn(styles["info"])}>
-                      {movieInfo.premiere.world.slice(0, 10)}
-                    </span>
-                    <span className={cn(styles["name"])}>Жанр</span>
-                    <span className={cn(styles["info"])}>
-                      {movieInfo.genres.map((genre) => genre.name).join(", ")}
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className={cn(styles["comments"])}>
-                {movieInfo.facts.map((fact) => {
-                  return <div>{fact.value}</div>;
-                })}
-              </div>
+      <div key={movieInfo.id}>
+        <div className={cn(styles["head"])}>
+          <span className={cn(styles["subtitle"])}>Поиск фильмов</span>
+          <h2
+            className={cn(styles["title"])}
+          >{`${movieInfo.name} (${movieInfo.alternativeName})`}</h2>
+        </div>
+        <div className={cn(styles["content"])}>
+          <img
+            className={cn(styles["poster"])}
+            src={movieInfo.poster.url}
+            alt="постер фильма"
+          />
+          <div className={cn(styles["right-panel"])}>
+            <div className={cn(styles["description"])}>
+              {movieInfo.description}
             </div>
-          )}
-        </Await>
-      </Suspense>
+            <div className={cn(styles["rating"])}>
+              <Rating rating={Number(movieInfo.rating.imdb)}></Rating>
+              <AddInFavorites
+                currentUserName={currentUserName}
+                id={String(movieInfo.id)}
+              />
+            </div>
+            <div className={cn(styles["details"])}>
+              <span className={cn(styles["name"])}>Тип</span>
+              <span className={cn(styles["info"])}>{movieInfo.type}</span>
+              <span className={cn(styles["name"])}>Дата Выхода</span>
+              <span className={cn(styles["info"])}>
+                {movieInfo.premiere.world.slice(0, 10)}
+              </span>
+              <span className={cn(styles["name"])}>Жанр</span>
+              <span className={cn(styles["info"])}>
+                {movieInfo.genres.map((genre) => genre.name).join(", ")}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className={cn(styles["comments"])}>
+          {movieInfo.facts.map((fact) => {
+            return <div>{fact.value}</div>;
+          })}
+        </div>
+      </div>
     </>
   );
 };

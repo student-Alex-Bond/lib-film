@@ -1,27 +1,62 @@
 import styles from "./AddInFavorites.module.css";
 import cn from "classnames";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import like from "./../../assets/like.svg";
 import addedToFavorites from "./../../assets/addedToFavorites.svg";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from "../../features/allUsers.slice";
+import { RootState } from "../../store/store";
 
-export const AddInFavorites: FC = () => {
-  const [isFavorite, setIsFavorite] = useState(false);
+interface AddInFavoritesProps {
+  id: string;
+  currentUserName: string;
+}
+export const AddInFavorites: FC<AddInFavoritesProps> = ({
+  id,
+  currentUserName,
+}) => {
+  const [isFavorite, setIsFavorite] = useState(true);
+  const dispatch = useDispatch();
+  const userFavoritesMovies = useSelector(
+    (state: RootState) => state.currentUser.favoritesMovies
+  );
+  useEffect(() => {
+    if (userFavoritesMovies.includes(id)) {
+      setIsFavorite(false);
+    }
+  }, []);
 
-  const invertValue = () => {
-    setIsFavorite((state) => !state);
+  const appendInFavorite = () => {
+    setIsFavorite(true);
+    dispatch(addToFavorites({ id, currentUserName }));
+  };
+  const deleteFromFavorite = () => {
+    setIsFavorite(false);
+    dispatch(removeFromFavorites({ id, currentUserName }));
   };
 
-  const img = isFavorite ? addedToFavorites : like;
-
   return (
-    <button
-      onClick={invertValue}
-      className={cn(styles.button, {
-        [styles["active"]]: isFavorite,
-      })}
-    >
-      <img src={img} alt="иконка избранное" />
-      {isFavorite ? "В избранном" : "В избранное"}
-    </button>
+    <>
+      {isFavorite ? (
+        <button
+          type="button"
+          onClick={appendInFavorite}
+          className={cn(styles.button)}
+        >
+          <img src={addedToFavorites} alt="иконка избранное" />В избранное
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={deleteFromFavorite}
+          className={cn(styles.button, styles["active"])}
+        >
+          <img src={like} alt="иконка избранное" />В избранном
+        </button>
+      )}
+    </>
   );
 };
