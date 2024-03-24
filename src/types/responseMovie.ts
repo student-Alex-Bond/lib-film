@@ -1,4 +1,4 @@
-export interface IResponseMovie {
+export type ResponseMovieType =  {
     fees: Fees
     id: number
     type: string

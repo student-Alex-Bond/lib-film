@@ -1,11 +1,11 @@
 import cn from "classnames";
 import styles from "./Paragraph.module.css";
-import { IParagraph } from "./Paragraph.props";
+import { ParagraphProps } from "./Paragraph.props";
 import { FC } from "react";
 
-export const Paragraph:FC<IParagraph> = ({ children, fs }) => {
+export const Paragraph: FC<ParagraphProps> = ({ children, fontSize }) => {
   return (
-    <p className={cn(styles.paragraph)} style={{ fontSize: `${fs}` }}>
+    <p className={cn(styles.paragraph)} style={{ fontSize: `${fontSize}` }}>
       {children}
     </p>
   );

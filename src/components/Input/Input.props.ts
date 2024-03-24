@@ -1,6 +1,6 @@
-import { InputHTMLAttributes, ChangeEvent } from "react";
+import { ChangeEvent, ComponentPropsWithRef } from "react";
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export type InputProps = ComponentPropsWithRef<'input'> & {
   isValid?: boolean;
   isIcon?: boolean;
   isValidText?: string;

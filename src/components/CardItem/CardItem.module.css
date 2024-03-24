@@ -25,6 +25,7 @@
 .img {
   border-radius: 8px;
   margin-bottom: 24px;
+  width: 100%;
 }
 .button {
   position: relative;

@@ -54,11 +54,14 @@ export const allUsersSlice = createSlice({
         return;
       }
 
-       state.map((user) => {
-        user.name === action.payload.currentUserName
-          ? user.favoritesMovies.filter(
-              (movieId) => movieId !== action.payload.id
-            )
+     return state.map((user) => {
+        return user.name === action.payload.currentUserName
+          ? {
+              ...user,
+              favoritesMovies: user.favoritesMovies.filter(
+                (movieId) => movieId !== action.payload.id
+              ),
+            }
           : user;
       });
     },

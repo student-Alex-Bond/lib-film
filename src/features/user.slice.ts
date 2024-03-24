@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { token } from "../env";
 export type userType = {
   name: string;
   isLogined: Boolean;
@@ -22,7 +21,6 @@ export const userSlice = createSlice({
     clearCurrentUser: (state) => {
       state.name = "";
       state.isLogined = false;
-      state.favoritesMovies = [];
     },
   },
 });

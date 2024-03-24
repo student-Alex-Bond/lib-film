@@ -1,10 +1,12 @@
-import { FC, useState, useEffect, ChangeEvent, useRef } from "react";
+import { FC, useState, ChangeEvent } from "react";
 import { Button } from "../../components/Button/Button";
 import { Heading } from "../../components/Heading/Heading";
 import { Input } from "../../components/Input/Input";
 import { Paragraph } from "../../components/Paragraph/Paragraph";
 import { CardList } from "../CardList/CardList";
 import { useLazyGetMoviesQuery } from "../../features/movies.slice";
+import styles from "./Main.module.css";
+import cn from "classnames";
 
 export const Main: FC = () => {
   const [titleMovie, setTitleMovie] = useState<string>("");
@@ -13,6 +15,7 @@ export const Main: FC = () => {
     const value = event.target.value;
     setTitleMovie(value);
   };
+  //  if(!data) return
 
   const handleClick = () => {
     fetchMovies(titleMovie);
@@ -30,9 +33,13 @@ export const Main: FC = () => {
         isIcon={true}
         placeholder={"Введите название"}
       />
+      <div className={cn(styles["mb-20"])}></div>
+
       <Button type="button" onClick={handleClick}>
         Искать
       </Button>
+      <div className={cn(styles["mb-20"])}></div>
+    
       <CardList movies={data?.docs} isLoading={isLoading} />
     </main>
   );
