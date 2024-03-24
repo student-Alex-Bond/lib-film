@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import { ComponentProps, ReactNode } from "react";
 
-export interface IParagraph {
+export type ParagraphProps = ComponentProps<'p'> & {
     children: ReactNode;
     fontSize: string;
 }

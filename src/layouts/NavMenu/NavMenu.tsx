@@ -12,6 +12,10 @@ import { RootState } from "../../store/store";
 
 export const NavMenu = () => {
   const users = useSelector((state: RootState) => state.allUsers);
+  const currentUserName = useSelector(
+    (state: RootState) => state.currentUser.name
+  );
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -20,7 +24,9 @@ export const NavMenu = () => {
       const findedLoginedUser = users.find((user) => user.isLogined === true);
       if (findedLoginedUser) {
         dispatch(siginUser(findedLoginedUser));
-        navigate(routes.main);
+        if (currentUserName !== findedLoginedUser.name) {
+          navigate(routes.main);
+        }
       } else {
         navigate(routes.signIn);
       }

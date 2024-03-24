@@ -9,11 +9,9 @@ import {
   removeFromFavorites,
 } from "../../features/allUsers.slice";
 import { RootState } from "../../store/store";
+import { AddInFavoritesProps } from "./addInFavorites.props";
 
-interface AddInFavoritesProps {
-  id: string;
-  currentUserName: string;
-}
+
 export const AddInFavorites: FC<AddInFavoritesProps> = ({
   id,
   currentUserName,
@@ -30,11 +28,11 @@ export const AddInFavorites: FC<AddInFavoritesProps> = ({
   }, []);
 
   const appendInFavorite = () => {
-    setIsFavorite(true);
+    setIsFavorite(false);
     dispatch(addToFavorites({ id, currentUserName }));
   };
   const deleteFromFavorite = () => {
-    setIsFavorite(false);
+    setIsFavorite(true);
     dispatch(removeFromFavorites({ id, currentUserName }));
   };
 
