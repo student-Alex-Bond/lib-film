@@ -23,7 +23,7 @@ export const moviesApi = createApi({
       query: (id) => `${id}`,
     }),
     // не могу типизировать getCurrentUserFavoritesMovies
-    getCurrentUserFavoritesMovies: builder.query({
+    getCurrentUserFavoritesMovies: builder.query<any, any>({
       queryFn: async (
         moviesId: Array<string> = [],
         _queryApi,

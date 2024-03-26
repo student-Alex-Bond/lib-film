@@ -3,10 +3,10 @@ import { Heading } from "../../components/Heading/Heading";
 import { useGetCurrentUserFavoritesMoviesQuery } from "../../features/movies.slice";
 import { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
-import { Doc } from "../../mocha";
 import { CardItem } from "../../components/CardItem/CardItem";
 import styles from "./Favorites.module.css";
 import cn from "classnames";
+import { ResponseMovieType } from "../../types/responseMovie";
 export const Favorites: FC = () => {
   const favoriteMovies = useSelector(
     (state: RootState) => state.currentUser.favoritesMovies
@@ -17,7 +17,7 @@ export const Favorites: FC = () => {
     <div>
       <Heading>Favorites</Heading>
       <ul className={cn(styles["favorite_list"])}>
-        {data.map((movie: Doc) => {
+        {data.map((movie: ResponseMovieType) => {
           return (
             <li key={movie.id + 1}>
               <CardItem

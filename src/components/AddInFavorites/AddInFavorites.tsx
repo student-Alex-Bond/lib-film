@@ -9,7 +9,7 @@ import {
   removeFromFavorites,
 } from "../../features/allUsers.slice";
 import { RootState } from "../../store/store";
-import { AddInFavoritesProps } from "./addInFavorites.props";
+import { AddInFavoritesProps } from "./AddInFavorites.props";
 
 
 export const AddInFavorites: FC<AddInFavoritesProps> = ({
