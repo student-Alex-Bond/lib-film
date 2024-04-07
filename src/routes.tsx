@@ -1,6 +1,6 @@
 import { Layout } from "./layouts/Layout/Layout";
 import { Error } from "./components/Error/Error";
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import { Favorites } from "./layouts/Favorites/Favorites";
 import { FilmItem } from "./layouts/FilmItem/FilmItem";
 import { Main } from "./layouts/Main/Main";
@@ -15,7 +15,7 @@ export const routes = {
   actor: "/name/:id",
 };
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: routes.main,
     element: <Layout />,

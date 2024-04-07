@@ -1,6 +1,6 @@
 {
-  "name": "lib-film",
   "homepage": "https://student-Alex-Bond.github.io/lib-film/",
+  "name": "lib-film",
   "private": true,
   "version": "0.0.0",
   "type": "module",
