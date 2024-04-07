@@ -41,7 +41,7 @@ export const Favorites: FC = () => {
     return <div>запрос на сервер за вашими фильмами </div>;
   return (
     <div>
-      <Heading>Favorites</Heading>
+      <Heading> Мои избранные фильмы</Heading>
       <ul className={cn(styles["favorite_list"])}>
         {movies.map((movie: ResponseMovieType) => {
           return (
