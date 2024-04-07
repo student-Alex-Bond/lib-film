@@ -1,17 +1,17 @@
 import cn from "classnames";
 import styles from "./SignIn.module.css";
-import { FC, useContext, useRef, useState } from "react";
+import { FC, useRef, useState } from "react";
 import { Heading } from "./../../components/Heading/Heading.jsx";
 import { Input } from "./../../components/Input/Input.jsx";
 import { Button } from "../../components/Button/Button.jsx";
 import { useNavigate } from "react-router-dom";
-import { routes } from "../../routes";
+import { routes } from "./../../routes";
 import { useDispatch } from "react-redux";
 import { AppDispathType } from "../../store/store";
 import { addUser } from "../../features/allUsers.slice";
 
-export const SignIn:FC = () => {
-  const [isValid, setIsValid] = useState<boolean>(true);
+export const SignIn: FC = () => {
+  const [isValid, setIsValid] = useState(true);
   const userName = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispathType>();
@@ -23,14 +23,13 @@ export const SignIn:FC = () => {
         setIsValid(false);
       } else {
         setIsValid(true);
-        dispatch(addUser({name:valueInput}));
+        dispatch(addUser({ name: valueInput }));
         userName.current.value = "";
         navigate(routes.main);
       }
     }
   };
 
-    
   return (
     <div className={cn(styles["sign-in"])}>
       <Heading>Вход</Heading>
@@ -40,7 +39,9 @@ export const SignIn:FC = () => {
         isIcon={false}
         placeholder={"Ваше имя"}
       />
-      <Button type="button" onClick={setUserName}>Войти</Button>
+      <Button type="button" onClick={setUserName}>
+        Войти
+      </Button>
     </div>
   );
 };

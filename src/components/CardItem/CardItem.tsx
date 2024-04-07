@@ -14,14 +14,16 @@ export const CardItem: FC<CardItemPpors> = ({ id, poster, name, rating }) => {
   );
 
   return (
-    <Link className={cn(styles["card-item"])} to={`/movie/${id}`}>
-      <div className={cn(styles["wrapper-rating"])}>
-        <Rating rating={rating} />
-      </div>
+    <div className={cn(styles["card-item"])}>
+      <Link to={`/movie/${id}`}>
+        <div className={cn(styles["wrapper-rating"])}>
+          <Rating rating={rating} />
+        </div>
 
-      <img className={cn(styles.img)} src={poster} alt="постер фильма" />
-      <h2 className={cn(styles.h2)}>{name}</h2>
+        <img className={cn(styles.img)} src={poster} alt="постер фильма" />
+        <h2 className={cn(styles.h2)}>{name}</h2>
+      </Link>
       <AddInFavorites currentUserName={currentUserName} id={id} />
-    </Link>
+    </div>
   );
 };

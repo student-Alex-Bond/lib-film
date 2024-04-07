@@ -1,4 +1,4 @@
-import { FC, useState, ChangeEvent } from "react";
+import { FC, useState, ChangeEvent, KeyboardEvent } from "react";
 import { Button } from "../../components/Button/Button";
 import { Heading } from "../../components/Heading/Heading";
 import { Input } from "../../components/Input/Input";
@@ -7,18 +7,27 @@ import { CardList } from "../CardList/CardList";
 import { useLazyGetMoviesQuery } from "../../features/movies.slice";
 import styles from "./Main.module.css";
 import cn from "classnames";
+import { MovieType } from "../../types/responseAllMovies";
 
 export const Main: FC = () => {
+  const [movies, setMovies] = useState<MovieType[]>([]);
   const [titleMovie, setTitleMovie] = useState<string>("");
   const [fetchMovies, { data, isLoading }] = useLazyGetMoviesQuery();
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setTitleMovie(value);
   };
-  //  if(!data) return
 
   const handleClick = () => {
     fetchMovies(titleMovie);
+    if (data) {
+      setMovies(data.docs);
+    }
+  };
+  const handlePressEnter = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleClick();
+    }
   };
   return (
     <main>
@@ -32,6 +41,7 @@ export const Main: FC = () => {
         onChange={handleInput}
         isIcon={true}
         placeholder={"Введите название"}
+        onKeyDown={(e) => handlePressEnter(e)}
       />
       <div className={cn(styles["mb-20"])}></div>
 
@@ -39,8 +49,8 @@ export const Main: FC = () => {
         Искать
       </Button>
       <div className={cn(styles["mb-20"])}></div>
-    
-      <CardList movies={data?.docs} isLoading={isLoading} />
+
+      <CardList movies={movies} isLoading={isLoading} />
     </main>
   );
 };

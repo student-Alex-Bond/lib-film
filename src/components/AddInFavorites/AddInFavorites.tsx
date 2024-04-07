@@ -42,7 +42,7 @@ export const AddInFavorites: FC<AddInFavoritesProps> = ({
         <button
           type="button"
           onClick={appendInFavorite}
-          className={cn(styles.button)}
+          className={cn(styles['button'])}
         >
           <img src={addedToFavorites} alt="иконка избранное" />В избранное
         </button>
@@ -50,7 +50,7 @@ export const AddInFavorites: FC<AddInFavoritesProps> = ({
         <button
           type="button"
           onClick={deleteFromFavorite}
-          className={cn(styles.button, styles["active"])}
+          className={cn(styles['button'], styles["active"])}
         >
           <img src={like} alt="иконка избранное" />В избранном
         </button>

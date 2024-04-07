@@ -4,11 +4,11 @@ import { CardItem } from "../../components/CardItem/CardItem";
 import { FC } from "react";
 import { MovieType } from "../../types/responseAllMovies";
 
-export const CardList: FC<{ movies?: MovieType[]; isLoading: boolean }> = ({
-  movies,
+export const CardList: FC<{ movies: MovieType[]; isLoading: boolean }> = ({
+  movies = [],
   isLoading,
 }) => {
-  if (!movies)
+  if (movies.length === 0)
     return (
       <div>
         Введите название фильма, либо нажмите на кнопку искать

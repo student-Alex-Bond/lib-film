@@ -19,7 +19,6 @@ export const FilmItem: FC = () => {
   let movieInfo: ResponseMovieType | undefined;
   if (!data) return;
   movieInfo = data;
-  console.log(data);
 
   if (isLoading) return <div>Losding...</div>;
 
@@ -53,7 +52,9 @@ export const FilmItem: FC = () => {
             <span className={cn(styles["info"])}>{movieInfo.type}</span>
             <span className={cn(styles["name"])}>Дата Выхода</span>
             <span className={cn(styles["info"])}>
-              {movieInfo.premiere.world ? movieInfo.premiere.world.slice(0, 10): ''}
+              {movieInfo.premiere.world
+                ? movieInfo.premiere.world.slice(0, 10)
+                : ""}
             </span>
             <span className={cn(styles["name"])}>Жанр</span>
             <span className={cn(styles["info"])}>
@@ -64,7 +65,12 @@ export const FilmItem: FC = () => {
       </div>
       <div className={cn(styles["comments"])}>
         {movieInfo.facts.map((fact) => {
-          return <div>{fact.value}</div>;
+          return (
+            <div
+              key={fact.type}
+              dangerouslySetInnerHTML={{ __html: fact.value }}
+            />
+          );
         })}
       </div>
     </div>
