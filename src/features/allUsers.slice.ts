@@ -1,10 +1,10 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { userType } from "./user.slice";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { userType } from './user.slice';
 
 const initialState: Array<userType> = [];
 
 export const allUsersSlice = createSlice({
-  name: "allUsers",
+  name: 'allUsers',
   initialState,
   reducers: {
     addUser: (state, action: PayloadAction<{ name: string }>) => {
@@ -23,19 +23,17 @@ export const allUsersSlice = createSlice({
           return acc;
         }, [])
         .map((user) =>
-          user.name === action.payload.name
-            ? { ...user, isLogined: true }
-            : user
+          user.name === action.payload.name ? { ...user, isLogined: true } : user,
         );
     },
     logoutUser: (state, action: PayloadAction<{ name: string }>) => {
       return state.map((user) =>
-        user.name === action.payload.name ? { ...user, isLogined: false } : user
+        user.name === action.payload.name ? { ...user, isLogined: false } : user,
       );
     },
     addToFavorites: (
       state,
-      action: PayloadAction<{ id: string; currentUserName: string }>
+      action: PayloadAction<{ id: string; currentUserName: string }>,
     ) => {
       if (!action.payload.id) {
         return;
@@ -48,18 +46,18 @@ export const allUsersSlice = createSlice({
     },
     removeFromFavorites: (
       state,
-      action: PayloadAction<{ id: string; currentUserName: string }>
+      action: PayloadAction<{ id: string; currentUserName: string }>,
     ) => {
       if (!action.payload.id) {
         return;
       }
 
-     return state.map((user) => {
+      return state.map((user) => {
         return user.name === action.payload.currentUserName
           ? {
               ...user,
               favoritesMovies: user.favoritesMovies.filter(
-                (movieId) => movieId !== action.payload.id
+                (movieId) => movieId !== action.payload.id,
               ),
             }
           : user;

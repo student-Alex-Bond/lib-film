@@ -1,0 +1,1 @@
+export { AddInFavorites } from './AddInFavorites';

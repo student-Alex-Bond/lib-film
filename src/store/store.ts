@@ -1,7 +1,7 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import userReducer from "../features/user.slice";
-import { moviesApi } from "../features/movies.slice";
-import allUsersReducer from "../features/allUsers.slice";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import userReducer from '../features/user.slice';
+import { moviesApi } from '../features/movies.slice';
+import allUsersReducer from '../features/allUsers.slice';
 import {
   persistReducer,
   persistStore,
@@ -11,14 +11,14 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import { setupListeners } from "@reduxjs/toolkit/query";
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { setupListeners } from '@reduxjs/toolkit/query';
 
 const persistConfig = {
-  key: "root",
+  key: 'root',
   storage,
-  blacklist: ["movies"],
+  blacklist: ['movies'],
 };
 
 const rootReducer = combineReducers({

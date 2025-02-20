@@ -1,11 +1,14 @@
-import cn from "classnames";
-import styles from "./Button.module.css";
-import { ButtonProps } from "./Button.props";
-import { FC } from "react";
+import cn from 'classnames';
+import styles from './Button.module.css';
+import { ComponentProps, FC, ReactNode } from 'react';
 
-export const Button: FC<ButtonProps> = ({ children, onClick }) => {
+export type ButtonTypeProps = ComponentProps<'button'> & {
+  children: ReactNode;
+};
+
+export const Button: FC<ButtonTypeProps> = ({ children, ...rest }) => {
   return (
-    <button onClick={onClick} className={cn(styles.btn)}>
+    <button {...rest} className={cn(styles.btn)}>
       {children}
     </button>
   );

@@ -1,7 +1,11 @@
-import cn from "classnames";
-import styles from "./Paragraph.module.css";
-import { ParagraphProps } from "./Paragraph.props";
-import { FC } from "react";
+import cn from 'classnames';
+import styles from './Paragraph.module.css';
+import { ComponentProps, FC, ReactNode } from 'react';
+
+export type ParagraphProps = ComponentProps<'p'> & {
+  children: ReactNode;
+  fontSize: string;
+};
 
 export const Paragraph: FC<ParagraphProps> = ({ children, fontSize }) => {
   return (

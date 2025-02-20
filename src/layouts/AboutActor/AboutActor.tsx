@@ -1,11 +1,10 @@
-import { FC } from "react";
-import { useGetInfoAboutActorQuery } from "../../features/movies.slice";
-import { useParams } from "react-router-dom";
+import { FC } from 'react';
+import { useGetInfoAboutActorQuery } from '../../features/movies.slice';
+import { useParams } from 'react-router-dom';
 
 export const AboutActor: FC = () => {
   const { id } = useParams();
-  if (!id) return;
-  const { data } = useGetInfoAboutActorQuery(id);
+  const { data } = useGetInfoAboutActorQuery(id!);
   if (!data) return;
   console.log(data);
   return (

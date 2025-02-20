@@ -1,14 +1,14 @@
-import cn from "classnames";
-import styles from "./SignIn.module.css";
-import { FC, useRef, useState } from "react";
-import { Heading } from "./../../components/Heading/Heading.jsx";
-import { Input } from "./../../components/Input/Input.jsx";
-import { Button } from "../../components/Button/Button.jsx";
-import { useNavigate } from "react-router-dom";
-import { routes } from "./../../routes";
-import { useDispatch } from "react-redux";
-import { AppDispathType } from "../../store/store";
-import { addUser } from "../../features/allUsers.slice";
+import cn from 'classnames';
+import styles from './SignIn.module.css';
+import { FC, useRef, useState } from 'react';
+import { Heading } from './../../components/Heading/Heading.jsx';
+import { Input } from './../../components/Input/Input.jsx';
+import { Button } from '../../components/Button/Button.jsx';
+import { useNavigate } from 'react-router-dom';
+import { routes } from '../../routes/routes';
+import { useDispatch } from 'react-redux';
+import { AppDispathType } from '../../store/store';
+import { addUser } from '../../features/allUsers.slice';
 
 export const SignIn: FC = () => {
   const [isValid, setIsValid] = useState(true);
@@ -24,21 +24,16 @@ export const SignIn: FC = () => {
       } else {
         setIsValid(true);
         dispatch(addUser({ name: valueInput }));
-        userName.current.value = "";
+        userName.current.value = '';
         navigate(routes.main);
       }
     }
   };
 
   return (
-    <div className={cn(styles["sign-in"])}>
+    <div className={cn(styles['sign-in'])}>
       <Heading>Вход</Heading>
-      <Input
-        ref={userName}
-        isValid={isValid}
-        isIcon={false}
-        placeholder={"Ваше имя"}
-      />
+      <Input ref={userName} isValid={isValid} isIcon={false} placeholder={'Ваше имя'} />
       <Button type="button" onClick={setUserName}>
         Войти
       </Button>

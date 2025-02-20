@@ -1,10 +1,10 @@
-import styles from "./CardList.module.css";
-import cn from "classnames";
-import { CardItem } from "../../components/CardItem/CardItem";
-import { FC } from "react";
-import { MovieType } from "../../types/responseAllMovies";
+import styles from './CardList.module.css';
+import cn from 'classnames';
+import { CardItem } from '../../components/CardItem/CardItem';
+import { FC } from 'react';
+import { MovieType } from '../../types/responseAllMovies';
 
-export const CardList: FC<{ movies: MovieType[]; isLoading: boolean }> = ({
+export const CardList: FC<{ movies?: MovieType[]; isLoading: boolean }> = ({
   movies = [],
   isLoading,
 }) => {
@@ -18,7 +18,7 @@ export const CardList: FC<{ movies: MovieType[]; isLoading: boolean }> = ({
     );
 
   return (
-    <ul className={cn(styles["card-list"])}>
+    <ul className={cn(styles['card-list'])}>
       {isLoading && <div>Loading...</div>}
       {movies.map((movie: MovieType) => {
         return (

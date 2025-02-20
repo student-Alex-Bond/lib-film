@@ -18,3 +18,8 @@
 .active {
   color: rgb(55, 216, 167);
 }
+.button_span {
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+overflow: hidden;
+}

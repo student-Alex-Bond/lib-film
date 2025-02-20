@@ -16,6 +16,13 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", "env.ts"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+],
+  "parserOptions": {
+    "project": ["./tsconfig.node.json"]
+
+  },
 }

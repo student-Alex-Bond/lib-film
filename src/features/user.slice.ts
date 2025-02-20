@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 export type userType = {
   name: string;
   isLogined: Boolean;
@@ -6,20 +6,20 @@ export type userType = {
 };
 
 const initialState: userType = {
-  name: "",
+  name: '',
   isLogined: false,
   favoritesMovies: [],
 };
 
 export const userSlice = createSlice({
-  name: "currentUser",
+  name: 'currentUser',
   initialState,
   reducers: {
     siginUser: (state, action: PayloadAction<userType>) => {
       return (state = action.payload);
     },
     clearCurrentUser: (state) => {
-      state.name = "";
+      state.name = '';
       state.isLogined = false;
     },
   },
