@@ -7,16 +7,18 @@ import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
 import { useGetMoviesByIdQuery } from '../../features/movies.slice';
 import { AddInFavorites } from '../../components/AddInFavorites';
+import { selectUserName } from '../../features/selectors';
+import { Loading } from '../../components/Loading';
 
 export const Movie: FC = () => {
   const { id } = useParams();
-  const currentUserName = useSelector((state: RootState) => state.currentUser.name);
+  const currentUserName = useSelector((state: RootState) => selectUserName(state));
 
   const { data, isLoading } = useGetMoviesByIdQuery(id!);
 
   if (!data) return;
 
-  if (isLoading) return <div>Losding...</div>;
+  if (isLoading) return <Loading width={50} height={50} />;
 
   return (
     <div key={data.id}>

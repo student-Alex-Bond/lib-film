@@ -1,21 +1,26 @@
 import cn from 'classnames';
 import styles from './NavList.module.css';
-import user from '../../assets/user.svg';
 import signIn from '../../assets/sign-in.svg';
 import { FC } from 'react';
+import user from '../../assets/user.svg';
 import { NavLink } from 'react-router-dom';
-import { routes } from '../../routes/routes';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispathType, RootState } from '../../store/store';
 import { clearCurrentUser } from '../../features/user.slice';
 import { logoutUser } from '../../features/allUsers.slice';
+import { routes } from '../../routes/constants';
+import {
+  selectFavoriteMovies,
+  selectUserLogined,
+  selectUserName,
+} from '../../features/selectors';
 
 export const NavList: FC = () => {
-  const name = useSelector((state: RootState) => state.currentUser.name);
-  const countFavoritesMovies = useSelector(
-    (state: RootState) => state.currentUser.favoritesMovies,
+  const name = useSelector((state: RootState) => selectUserName(state));
+  const countFavoritesMovies = useSelector((state: RootState) =>
+    selectFavoriteMovies(state),
   ).length;
-  const isLogined = useSelector((state: RootState) => state.currentUser.isLogined);
+  const isLogined = useSelector((state: RootState) => selectUserLogined(state));
   const dispatch = useDispatch<AppDispathType>();
   const logout = () => {
     dispatch(clearCurrentUser());

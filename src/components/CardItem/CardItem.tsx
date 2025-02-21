@@ -1,19 +1,16 @@
 import styles from './CardItem.module.css';
 import cn from 'classnames';
 import { Rating } from '../Rating/Rating';
-import { ComponentProps, FC } from 'react';
+import { FC } from 'react';
 import { AddInFavorites } from '../AddInFavorites/AddInFavorites';
 import { Link } from 'react-router-dom';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
-export type CardItemProps = ComponentProps<'li'> & {
-  name: string;
-  rating: number;
-  poster?: string;
-  id: string;
-};
+import { selectUserName } from '../../features/selectors';
+import { CardItemProps } from './types';
+
 export const CardItem: FC<CardItemProps> = ({ id, poster, name, rating }) => {
-  const currentUserName = useSelector((state: RootState) => state.currentUser.name);
+  const currentUserName = useSelector((state: RootState) => selectUserName(state));
 
   return (
     <div className={cn(styles['card-item'])}>

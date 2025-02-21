@@ -8,11 +8,10 @@ import styles from './Favorites.module.css';
 import cn from 'classnames';
 import { ResponseMovieType } from '../../types/responseMovie';
 import { Loading } from '../../components/Loading';
+import { selectFavoriteMovies } from '../../features/selectors';
 
 export const Favorites: FC = () => {
-  const favoriteMovies = useSelector(
-    (state: RootState) => state.currentUser.favoritesMovies,
-  );
+  const favoriteMovies = useSelector((state: RootState) => selectFavoriteMovies(state));
   const { data, isLoading } = useGetCurrentUserFavoritesMoviesQuery(favoriteMovies);
   if (favoriteMovies.length === 0) return <div>У вас нет избранных фильмов</div>;
 

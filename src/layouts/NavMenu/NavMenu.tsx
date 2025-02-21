@@ -1,5 +1,4 @@
-import { NavList } from '../NavList/NavList';
-import { Logo } from '../../components/Logo/Logo';
+import { NavList } from '../NavList';
 import { useEffect } from 'react';
 import styles from './NavMenu.module.css';
 import cn from 'classnames';
@@ -9,10 +8,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { siginUser } from '../../features/user.slice';
 import { RootState } from '../../store/store';
 import { routes } from '../../routes/constants';
+import { selectAllUsers, selectUserName } from '../../features/selectors';
+import { Logo } from '../../components/Logo';
 
 export const NavMenu = () => {
-  const users = useSelector((state: RootState) => state.allUsers);
-  const currentUserName = useSelector((state: RootState) => state.currentUser.name);
+  const users = useSelector((state: RootState) => selectAllUsers(state));
+  const currentUserName = useSelector((state: RootState) => selectUserName(state));
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

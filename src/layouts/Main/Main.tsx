@@ -8,9 +8,9 @@ import { InputSearch } from '../../components/InputSearch';
 import { Button } from '../../components/Button';
 import { Heading } from '../../components/Heading';
 import { Loading } from '../../components/Loading/Loading';
+import { formDefaultValues, SearchType } from './types';
 
-type SearchType = { title: string };
-const formDefaultValues = { title: '' };
+
 export const Main: FC = () => {
   const [fetchMovies, { data, isLoading }] = useLazyGetMoviesQuery();
   useEffect(() => {

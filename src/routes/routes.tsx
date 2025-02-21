@@ -17,6 +17,7 @@ const AboutActor = lazy(() =>
   import('../layouts/AboutActor').then(({ AboutActor }) => ({ default: AboutActor })),
 );
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const router = createHashRouter([
   {
     path: routes.main,
@@ -54,7 +55,6 @@ export const router = createHashRouter([
         path: routes.actor,
         element: (
           <Suspense fallback={<Loading width={20} height={20} />}>
-            {' '}
             <AboutActor />
           </Suspense>
         ),

@@ -1,21 +1,19 @@
 import styles from './AddInFavorites.module.css';
 import cn from 'classnames';
-import { ComponentProps, FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import like from './../../assets/like.svg';
 import addedToFavorites from './../../assets/addedToFavorites.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorites, removeFromFavorites } from '../../features/allUsers.slice';
 import { RootState } from '../../store/store';
+import { AddInFavoritesProps } from './types';
+import { selectFavoriteMovies } from '../../features/selectors';
 
-export type AddInFavoritesProps = ComponentProps<'button'> & {
-  id: string;
-  currentUserName: string;
-};
 export const AddInFavorites: FC<AddInFavoritesProps> = ({ id, currentUserName }) => {
   const [isFavorite, setIsFavorite] = useState(true);
   const dispatch = useDispatch();
-  const userFavoritesMovies = useSelector(
-    (state: RootState) => state.currentUser.favoritesMovies,
+  const userFavoritesMovies = useSelector((state: RootState) =>
+    selectFavoriteMovies(state),
   );
   useEffect(() => {
     if (userFavoritesMovies.includes(id)) {

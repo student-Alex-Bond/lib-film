@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { token } from '../../env';
 import { ResponseMoviesType } from '../types/responseAllMovies';
 import { ResponseMovieType } from '../types/responseMovie';
 import { fetchMoviesById } from '../helpers/fetchMovies';
+import { token } from '../../env';
 export const moviesApi = createApi({
   reducerPath: 'moviesApi',
   baseQuery: fetchBaseQuery({
