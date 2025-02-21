@@ -1,1 +1,0 @@
-import{u as r,f as e,j as t}from"./index-Do12aAdT.js";const n=()=>{const{id:o}=r(),{data:s}=e(o);if(s)return console.log(s),t.jsxs("div",{children:[t.jsx("div",{children:s.name}),t.jsx("img",{width:"280",height:"400",src:s.photo,alt:""}),t.jsx("div",{children:s.sex})]})};export{n as AboutActor};
